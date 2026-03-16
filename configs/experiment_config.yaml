@@ -5,11 +5,17 @@ exp0_reproduce_baseline:
   model: xlm-roberta-base
   description: "Reproduce official closed track baseline"
   per_l1: true
-  lr: 2e-5
+  component_order: "L1_source_word; L1_context; en_target_clue; en_target_word"
   batch_size: 32
+  lr: 3e-5
+  warmup_ratio: 0.1
   epochs: 5
+  weight_decay:
+    es: 0.1
+    de: 0.0
+    cn: 0.1
   seeds: [10]
-  notes: "Match official numbers: es=1.357, de=1.328, cn=1.175"
+  notes: "Match official numbers: es=1.357, de=1.328, cn=1.175. Note de has weight_decay=0."
 
 exp05_target_scaling:
   description: "Normalize GLMM_score before training"
@@ -24,9 +30,15 @@ exp2_better_transformer:
   model: microsoft/mdeberta-v3-base
   description: "Stronger encoder architecture"
   per_l1: true
-  lr: 2e-5
+  component_order: "L1_source_word; L1_context; en_target_clue; en_target_word"
   batch_size: 32
+  lr: 3e-5
+  warmup_ratio: 0.1
   epochs: 5
+  weight_decay:
+    es: 0.1
+    de: 0.0
+    cn: 0.1
 
 exp3_structured_input:
   description: "Explicit field labels in input text"
