@@ -3,7 +3,6 @@
 import argparse
 import pandas as pd
 import numpy as np
-from sklearn.metrics import mean_squared_error
 from scipy import stats
 
 CLOSED_BASELINES = {"es": 1.357, "de": 1.328, "cn": 1.175}
@@ -11,7 +10,7 @@ CLOSED_BASELINES = {"es": 1.357, "de": 1.328, "cn": 1.175}
 
 def evaluate_predictions(y_true: np.ndarray, y_pred: np.ndarray) -> dict:
     """Return dict with rmse, pearson_r, pearson_p."""
-    rmse = float(np.sqrt(mean_squared_error(y_true, y_pred)))
+    rmse = float(np.sqrt(np.mean((y_true - y_pred) ** 2)))
     r, p = stats.pearsonr(y_true, y_pred)
     return {"rmse": rmse, "pearson_r": float(r), "pearson_p": float(p)}
 
