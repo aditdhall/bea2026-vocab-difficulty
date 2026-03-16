@@ -41,7 +41,7 @@ def _char_bigram_jaccard(s1: str, s2: str) -> float:
 def _unihan_stroke_path():
     """Path to Unihan data or None."""
     for base in ["resources", "resources/Unihan", "."]:
-        for fname in ["Unihan_DictionaryLikeData.txt", "Unihan_StrokeCount.txt"]:
+        for fname in ["Unihan_IRGSources.txt", "Unihan_DictionaryLikeData.txt", "Unihan_StrokeCount.txt"]:
             p = os.path.join(base, fname)
             if os.path.isfile(p):
                 return p
