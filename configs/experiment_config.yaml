@@ -1,0 +1,49 @@
+# BEA 2026 Closed Track — Experiment Configuration
+# All experiments: per_l1: true (one model per L1)
+
+exp0_reproduce_baseline:
+  model: xlm-roberta-base
+  description: "Reproduce official closed track baseline"
+  per_l1: true
+  lr: 2e-5
+  batch_size: 32
+  epochs: 5
+  seeds: [10]
+  notes: "Match official numbers: es=1.357, de=1.328, cn=1.175"
+
+exp05_target_scaling:
+  description: "Normalize GLMM_score before training"
+  per_l1: true
+
+exp1_xgboost_features:
+  model: xgboost
+  description: "Feature-only baseline, no transformer"
+  per_l1: true
+
+exp2_better_transformer:
+  model: microsoft/mdeberta-v3-base
+  description: "Stronger encoder architecture"
+  per_l1: true
+  lr: 2e-5
+  batch_size: 32
+  epochs: 5
+
+exp3_structured_input:
+  description: "Explicit field labels in input text"
+  per_l1: true
+
+exp4_hybrid_model:
+  description: "Transformer CLS + frozen features + MLP — MAIN CONTRIBUTION"
+  per_l1: true
+  transformer_lr: 1e-5
+  mlp_lr: 1e-4
+  seeds: [10, 42, 123, 456, 789]
+
+exp5_hparam_tuning:
+  description: "Random search, max 15 configs"
+  per_l1: true
+
+exp6_ensemble:
+  description: "5-seed average + XGBoost blend"
+  per_l1: true
+  seeds: [10, 42, 123, 456, 789]

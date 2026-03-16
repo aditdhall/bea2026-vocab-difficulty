@@ -1,0 +1,15 @@
+data/**/*.csv
+upstream/
+resources/*.csv
+resources/*.txt
+resources/*.xlsx
+*.pt
+*.pkl
+*.bin
+*.safetensors
+wandb/
+__pycache__/
+.ipynb_checkpoints/
+models/checkpoints/
+*.pyc
+.DS_Store

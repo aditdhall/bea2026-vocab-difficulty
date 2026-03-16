@@ -1,0 +1,19 @@
+{
+  "shared": [
+    "reveal_ratio",
+    "word_length",
+    "syllable_count",
+    "context_length",
+    "context_ttr",
+    "target_position_ratio"
+  ],
+  "es_de_specific": [
+    "edit_distance",
+    "is_cognate",
+    "char_ngram_overlap",
+    "length_ratio"
+  ],
+  "cn_specific": [
+    "cn_stroke_complexity"
+  ]
+}
