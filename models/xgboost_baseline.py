@@ -3,7 +3,6 @@
 import numpy as np
 import pandas as pd
 from xgboost import XGBRegressor
-from sklearn.metrics import mean_squared_error
 from scipy import stats
 
 
@@ -47,7 +46,7 @@ class XGBoostBaseline:
             return {"rmse": None, "pearson_r": None, "pearson_p": None}
         y_true = df["GLMM_score"].values
         y_pred = self.predict(df)
-        rmse = float(mean_squared_error(y_true, y_pred, squared=False))
+        rmse = float(np.sqrt(np.mean((y_true - y_pred) ** 2)))
         r, p = stats.pearsonr(y_true, y_pred)
         return {"rmse": rmse, "pearson_r": float(r), "pearson_p": float(p)}
 
