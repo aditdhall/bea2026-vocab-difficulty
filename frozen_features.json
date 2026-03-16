@@ -3,15 +3,25 @@
     "reveal_ratio",
     "word_length",
     "syllable_count",
+    "has_suffix",
+    "subtlex_freq",
+    "aoa_score",
+    "concreteness",
+    "cefr_level",
+    "wordnet_num_senses",
+    "wordnet_depth",
+    "pos_NOUN",
+    "pos_VERB",
+    "pos_ADJ",
     "context_length",
-    "context_ttr",
     "target_position_ratio"
   ],
   "es_de_specific": [
     "edit_distance",
-    "is_cognate",
     "char_ngram_overlap",
-    "length_ratio"
+    "is_cognate",
+    "length_ratio",
+    "l1_is_compound"
   ],
   "cn_specific": [
     "cn_stroke_complexity"
