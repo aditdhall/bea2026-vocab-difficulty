@@ -41,9 +41,10 @@ def _char_bigram_jaccard(s1: str, s2: str) -> float:
 def _unihan_stroke_path():
     """Path to Unihan data or None."""
     for base in ["resources", "resources/Unihan", "."]:
-        p = os.path.join(base, "Unihan_StrokeCount.txt")
-        if os.path.isfile(p):
-            return p
+        for fname in ["Unihan_DictionaryLikeData.txt", "Unihan_StrokeCount.txt"]:
+            p = os.path.join(base, fname)
+            if os.path.isfile(p):
+                return p
     return None
 
 
@@ -106,6 +107,12 @@ class CognateFeatures:
 
         if self.l1 == "cn":
             stroke_map = self._load_strokes()
+            if not stroke_map:
+                import warnings
+                warnings.warn(
+                    "Unihan stroke data not loaded — cn_stroke_complexity will be all zeros. "
+                    "Run: python scripts/download_resources.py"
+                )
             def total_strokes(s):
                 return sum(stroke_map.get(c, 0) for c in (s or ""))
             out["cn_stroke_complexity"] = l1.apply(total_strokes)
