@@ -11,7 +11,7 @@ CLOSED_BASELINES = {"es": 1.357, "de": 1.328, "cn": 1.175}
 
 def evaluate_predictions(y_true: np.ndarray, y_pred: np.ndarray) -> dict:
     """Return dict with rmse, pearson_r, pearson_p."""
-    rmse = float(mean_squared_error(y_true, y_pred, squared=False))
+    rmse = float(np.sqrt(mean_squared_error(y_true, y_pred)))
     r, p = stats.pearsonr(y_true, y_pred)
     return {"rmse": rmse, "pearson_r": float(r), "pearson_p": float(p)}
 
