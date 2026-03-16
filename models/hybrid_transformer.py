@@ -23,29 +23,28 @@ def _load_frozen_feature_names(l1: str, frozen_path: str = "frozen_features.json
 
 
 class VocabularyDataset(Dataset):
-    """Dataset yielding (input_ids, attention_mask, feature_vec, label)."""
+    """Dataset yielding (input_ids, attention_mask, feature_vec, label). Pre-tokenizes all texts in __init__."""
 
     def __init__(self, texts: list[str], feature_matrix: np.ndarray, labels: np.ndarray | None, tokenizer, max_length: int = 128):
-        self.texts = texts
-        self.features = torch.tensor(feature_matrix, dtype=torch.float32)
-        self.labels = torch.tensor(labels, dtype=torch.float32).unsqueeze(1) if labels is not None else None
-        self.tokenizer = tokenizer
-        self.max_length = max_length
-
-    def __len__(self):
-        return len(self.texts)
-
-    def __getitem__(self, i):
-        enc = self.tokenizer(
-            self.texts[i],
+        encodings = tokenizer(
+            texts,
             padding="max_length",
-            max_length=self.max_length,
+            max_length=max_length,
             truncation=True,
             return_tensors="pt",
         )
+        self.input_ids = encodings["input_ids"]
+        self.attention_mask = encodings["attention_mask"]
+        self.features = torch.tensor(feature_matrix, dtype=torch.float32)
+        self.labels = torch.tensor(labels, dtype=torch.float32).unsqueeze(1) if labels is not None else None
+
+    def __len__(self):
+        return len(self.input_ids)
+
+    def __getitem__(self, i):
         out = {
-            "input_ids": enc["input_ids"].squeeze(0),
-            "attention_mask": enc["attention_mask"].squeeze(0),
+            "input_ids": self.input_ids[i],
+            "attention_mask": self.attention_mask[i],
             "features": self.features[i],
         }
         if self.labels is not None:
