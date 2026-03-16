@@ -91,6 +91,7 @@ def train_hybrid(
     epochs: int = 5,
     patience: int = 2,
     device: torch.device | None = None,
+    weight_decay: float = 0.0,
 ):
     """Train with AdamW, linear warmup 10%, early stopping on dev RMSE."""
     if device is None:
@@ -100,8 +101,8 @@ def train_hybrid(
     mlp_params = list(model.mlp.parameters())
     optimizer = torch.optim.AdamW(
         [
-            {"params": transformer_params, "lr": transformer_lr},
-            {"params": mlp_params, "lr": mlp_lr},
+            {"params": transformer_params, "lr": transformer_lr, "weight_decay": weight_decay},
+            {"params": mlp_params, "lr": mlp_lr, "weight_decay": weight_decay},
         ]
     )
     total_steps = len(train_loader) * epochs
