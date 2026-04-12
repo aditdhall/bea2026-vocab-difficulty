@@ -72,7 +72,7 @@ class HybridTransformerModel(nn.Module):
             nn.ReLU(),
             nn.Dropout(dropout),
             nn.Linear(hidden_dim, 1),
-        )
+        ) 
 
     def forward(self, input_ids, attention_mask, features):
         enc = self.encoder(input_ids=input_ids, attention_mask=attention_mask)
