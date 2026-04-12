@@ -113,6 +113,8 @@ pip install -r requirements.txt
 pip install xgboost shap
 ```
 
+> **Important:** Before running, set your Colab runtime to A100 GPU via Runtime → Change runtime type → A100 GPU. Training takes ~3.5 hours on A100.
+
 3. Copy data and resources from Drive (or download fresh as described above).
 
 ### Run the submission notebook
