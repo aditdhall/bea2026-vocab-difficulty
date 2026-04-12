@@ -13,3 +13,6 @@ __pycache__/
 models/checkpoints/
 *.pyc
 .DS_Store
+resources/*.zip
+results/**/*.csv
+results/**/*.pdf
