@@ -2,6 +2,8 @@
 
 **Team:** SAAKTH · **Team size:** 5 · **Track:** Closed · **Task:** [BEA 2026 Shared Task on Vocabulary Difficulty Prediction](https://github.com/britishcouncil/bea2026st)
 
+**Authors:** Karthik Mattu, Adit Dhall, Arshad Naguru, Shubh Sehgal, Thejas Gowda, Hakyung Sung · Rochester Institute of Technology
+
 This repository contains our system for predicting English vocabulary difficulty (`GLMM_score`) for learners from three L1 backgrounds: **Spanish (es)**, **German (de)**, and **Mandarin (cn)**. Our approach combines a fine-tuned `xlm-roberta-large` encoder with handcrafted psycholinguistic features, trained with 5-seed ensembling and optional XGBoost blending.
 
 ---
